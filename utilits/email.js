@@ -23,6 +23,9 @@ module.exports = class Email {
           user: `${process.env.EMAIL_FROM}`,
           pass: 'Taekwondo',
         },
+        tls: {
+          rejectUnauthorized: false,
+        },
       });
     } else {
       return nodemailer.createTransport({
@@ -40,6 +43,9 @@ module.exports = class Email {
         auth: {
           user: `${process.env.EMAIL_FROM}`,
           pass: 'Taekwondo',
+        },
+        tls: {
+          rejectUnauthorized: false,
         },
       });
     }
