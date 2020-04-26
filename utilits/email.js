@@ -33,7 +33,7 @@ module.exports = class Email {
           pass: process.env.EMAIL_PASSWORD,
         }, */
 
-        port: 3000,
+        port: process.env.PORT,
         host: 'localhost',
         service: 'Hotmail',
         auth: {
