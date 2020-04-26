@@ -8520,7 +8520,7 @@ var signup = /*#__PURE__*/function () {
             _context3.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: 'http://127.0.0.1:3000/api/v1/users/signup',
+              url: '/api/v1/users/signup',
               data: {
                 name: name,
                 email: email,
@@ -8576,7 +8576,7 @@ var resetPass = /*#__PURE__*/function () {
             _context4.next = 4;
             return (0, _axios.default)({
               method: 'PATCH',
-              url: "http://127.0.0.1:3000/api/v1/users/restPassword/".concat(token),
+              url: "/api/v1/users/restPassword/".concat(token),
               data: {
                 password: password,
                 passwordConfirm: passwordConfirm
@@ -8629,7 +8629,7 @@ var forgotpass = /*#__PURE__*/function () {
             _context5.next = 3;
             return (0, _axios.default)({
               method: 'POST',
-              url: "http://127.0.0.1:3000/api/v1/users/forgotPassword",
+              url: "/api/v1/users/forgotPassword",
               data: {
                 email: email
               }
@@ -9315,7 +9315,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54173" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54635" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
