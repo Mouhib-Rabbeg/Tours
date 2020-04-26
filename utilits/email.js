@@ -11,16 +11,18 @@ module.exports = class Email {
   }
 
   createTransport() {
-    //send real email
-    return nodemailer.createTransport({
-      //email trap to simulate email sending
-      host: 'smtp.ethereal.email',
-      port: 587,
-      auth: {
-        user: 'filomena71@ethereal.email',
-        pass: 'EZfBJRg3ufbjTPAruv',
-      },
-    });
+    if (process.env.NODE_ENV === 'dev') {
+      //send real email
+
+      return nodemailer.createTransport({
+        //email trap to simulate email sending
+        service: 'Hotmail',
+        auth: {
+          user: `${process.env.EMAIL_FROM}`,
+          pass: 'Taekwondo',
+        },
+      });
+    }
   }
 
   async send(template, subject) {
