@@ -20,7 +20,7 @@ module.exports = class Email {
         auth: {
           user: 'apikey',
           pass:
-            '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',
+            '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',
         },
       });
     } else {
