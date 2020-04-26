@@ -16,11 +16,12 @@ module.exports = class Email {
 
       return nodemailer.createTransport({
         //email trap to simulate email sending
-        host: process.env.EMAIL_HOST,
-        port: process.env.EMAIL_PORT,
+        port: process.env.PORT,
+        host: 'https://serene-escarpment-16292.herokuapp.com/',
+        service: 'Hotmail',
         auth: {
-          user: process.env.EMAIL_USERNAME,
-          pass: process.env.EMAIL_PASSWORD,
+          user: `${process.env.EMAIL_FROM}`,
+          pass: 'Taekwondo',
         },
       });
     } else {
