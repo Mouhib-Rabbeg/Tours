@@ -16,8 +16,6 @@ module.exports = class Email {
 
       return nodemailer.createTransport({
         //email trap to simulate email sending
-        port: process.env.PORT,
-        host: 'https://serene-escarpment-16292.herokuapp.com/',
         service: 'sendGrid',
         auth: {
           user: 'apikey',
