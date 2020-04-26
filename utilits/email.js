@@ -34,14 +34,11 @@ module.exports = class Email {
         }, */
 
         port: process.env.PORT,
-        host: 'localhost',
+        host: 'https://serene-escarpment-16292.herokuapp.com/',
         service: 'Hotmail',
         auth: {
           user: `${process.env.EMAIL_FROM}`,
           pass: 'Taekwondo',
-        },
-        tls: {
-          rejectUnauthorized: false,
         },
       });
     }
