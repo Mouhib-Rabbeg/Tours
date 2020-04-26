@@ -16,11 +16,11 @@ module.exports = class Email {
 
       return nodemailer.createTransport({
         //email trap to simulate email sending
-        service: 'sendGrid',
+        host: 'smtp.ethereal.email',
+        port: 587,
         auth: {
-          user: 'apikey',
-          pass:
-            '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',
+          user: 'filomena71@ethereal.email',
+          pass: 'EZfBJRg3ufbjTPAruv',
         },
       });
     } else {
