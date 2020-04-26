@@ -18,13 +18,11 @@ module.exports = class Email {
         //email trap to simulate email sending
         port: process.env.PORT,
         host: 'https://serene-escarpment-16292.herokuapp.com/',
-        service: 'Hotmail',
+        service: 'sendGrid',
         auth: {
-          user: `${process.env.EMAIL_FROM}`,
-          pass: 'Taekwondo',
-        },
-        tls: {
-          rejectUnauthorized: false,
+          user: 'apikey',
+          pass:
+            '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',
         },
       });
     } else {
