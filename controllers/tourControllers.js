@@ -28,7 +28,7 @@ exports.uploadTourImages = upload.fields([
 
 exports.resizeTourImage = async (req, res, next) => {
   //check if imageCover && image are both uploaded
-  console.log(req.files);
+  //console.log(req.files);
   if (!req.files.imageCover || !req.files.imageCover) {
     return next();
   }
