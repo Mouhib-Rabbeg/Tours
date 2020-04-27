@@ -13,7 +13,6 @@ module.exports = class Email {
   createTransport() {
     if (process.env.NODE_ENV === 'dev') {
       //send real email
-
       return nodemailer.createTransport({
         //email trap to simulate email sending
         service: 'Hotmail',
@@ -46,7 +45,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send('welcome', 'welcome to the Natrous Family');
+    await this.send('welcome', 'welcome to the Tours Family');
   }
   async sendPasswordReset() {
     await this.send(
