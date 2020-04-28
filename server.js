@@ -16,6 +16,13 @@ mongoose
   });
 
 //start server
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log('running on port ', process.env.PORT);
+});
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECIVIED 👌');
+  server.close(() => {
+    console.log('process terminated !');
+  });
 });

@@ -12,7 +12,7 @@ const signToken = (id) => {
   });
 };
 
-const createSendToken = (user, statusCode, res) => {
+const createSendToken = (user, statusCode, req, res) => {
   const token = signToken(user._id);
 
   const cookieOptions = {
@@ -24,7 +24,8 @@ const createSendToken = (user, statusCode, res) => {
     //PREVENT COOKIE FROM BEING MODEFIED
     httponly: true,
   };
-  if (process.env.NODE_ENV === 'prod') {
+  //req.headers('x-forwarded-proto)==='https this for heroku
+  if (req.secure || req.headers('x-forwarded-proto') === 'https') {
     cookieOptions.secure = true;
   }
   res.cookie('jwt', token, cookieOptions);
@@ -45,7 +46,7 @@ exports.signup = async (req, res) => {
     const url = `${req.protocol}://${req.get('host')}/me`;
     await new Email(newUser, url).sendWelcome();
     //options like when jwt expires
-    createSendToken(newUser, 201, res);
+    createSendToken(newUser, 201, req, res);
   } catch (err) {
     res.status(400).json({
       status: 'fail',
@@ -74,7 +75,7 @@ exports.login = async (req, res, next) => {
     }
 
     //3 if everything ok ,send the token
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
   } catch (err) {
     res.status(400).json({
       status: 'fail',
@@ -212,7 +213,7 @@ exports.resetPassword = async (req, res, next) => {
     await user.save();
 
     //4) log in the user in ,send jwt
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
   } catch (err) {
     res.status(500).json({
       status: 'fail',
@@ -236,7 +237,7 @@ exports.updatePassword = async (req, res, next) => {
     user.passwordConfirm = req.body.passwordConfirm;
     await user.save();
     //4)log user in send the JWT
-    createSendToken(user, 200, res);
+    createSendToken(user, 200, req, res);
   } catch (err) {
     res.status(500).json({
       status: 'fail',
