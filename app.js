@@ -13,7 +13,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRouter');
 const bookingRoutes = require('./routes/bookingRoutes');
-
+const bookingController = require('./controllers/bookingController');
 //Start express app
 const app = express();
 //Trust proxy for heroku
@@ -50,6 +50,12 @@ app.use('/api', limiter);
 if (process.env.NODE_ENV === 'dev') {
   app.use(morgan('dev'));
 }
+//DATA COMMING needs to be not in JSON
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 //GIVE ACCESS TO REQUIEST BODY
 //LIMIT BODY SIZE
@@ -80,6 +86,7 @@ app.use((req, res, next) => {
 });
 
 //ROUTES
+
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
